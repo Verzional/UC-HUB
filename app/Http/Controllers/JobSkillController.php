@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobSkill;
+use App\Models\Job;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class JobSkillController extends Controller
@@ -12,7 +14,8 @@ class JobSkillController extends Controller
      */
     public function index()
     {
-        //
+        $jobSkills = JobSkill::with('job', 'skill')->get();
+        return view('job-skills.index', compact('jobSkills'));
     }
 
     /**
@@ -20,7 +23,9 @@ class JobSkillController extends Controller
      */
     public function create()
     {
-        //
+        $jobs = Job::all();
+        $skills = Skill::all();
+        return view('job-skills.create', compact('jobs', 'skills'));
     }
 
     /**
@@ -28,7 +33,19 @@ class JobSkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'job_id' => 'required|exists:jobs,id',
+            'skill_id' => 'required|exists:skills,id',
+        ]);
+
+        // Check if already exists
+        if (JobSkill::where('job_id', $request->job_id)->where('skill_id', $request->skill_id)->exists()) {
+            return redirect()->back()->withErrors(['error' => 'This job skill combination already exists.']);
+        }
+
+        JobSkill::create($request->only(['job_id', 'skill_id']));
+
+        return redirect()->route('job-skills.index')->with('success', 'Job skill created successfully.');
     }
 
     /**
@@ -36,7 +53,8 @@ class JobSkillController extends Controller
      */
     public function show(JobSkill $jobSkill)
     {
-        //
+        $jobSkill->load('job', 'skill');
+        return view('job-skills.show', compact('jobSkill'));
     }
 
     /**
@@ -44,7 +62,9 @@ class JobSkillController extends Controller
      */
     public function edit(JobSkill $jobSkill)
     {
-        //
+        $jobs = Job::all();
+        $skills = Skill::all();
+        return view('job-skills.edit', compact('jobSkill', 'jobs', 'skills'));
     }
 
     /**
@@ -52,7 +72,19 @@ class JobSkillController extends Controller
      */
     public function update(Request $request, JobSkill $jobSkill)
     {
-        //
+        $request->validate([
+            'job_id' => 'required|exists:jobs,id',
+            'skill_id' => 'required|exists:skills,id',
+        ]);
+
+        // Check if another exists
+        if (JobSkill::where('job_id', $request->job_id)->where('skill_id', $request->skill_id)->where('id', '!=', $jobSkill->id)->exists()) {
+            return redirect()->back()->withErrors(['error' => 'This job skill combination already exists.']);
+        }
+
+        $jobSkill->update($request->only(['job_id', 'skill_id']));
+
+        return redirect()->route('job-skills.index')->with('success', 'Job skill updated successfully.');
     }
 
     /**
@@ -60,6 +92,8 @@ class JobSkillController extends Controller
      */
     public function destroy(JobSkill $jobSkill)
     {
-        //
+        $jobSkill->delete();
+
+        return redirect()->route('job-skills.index')->with('success', 'Job skill deleted successfully.');
     }
 }

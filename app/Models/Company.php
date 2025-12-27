@@ -22,4 +22,9 @@ class Company extends Model
         'industry',
         'profile_photo_path',
     ];
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }
