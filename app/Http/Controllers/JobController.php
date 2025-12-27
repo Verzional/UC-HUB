@@ -14,7 +14,8 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::with('company')->get();
-        return view('jobs.index', compact('jobs'));
+
+        return view('main.jobs.index', compact('jobs'));
     }
 
     /**
@@ -23,7 +24,8 @@ class JobController extends Controller
     public function create()
     {
         $companies = Company::all();
-        return view('jobs.create', compact('companies'));
+
+        return view('main.jobs.create', compact('companies'));
     }
 
     /**
@@ -54,7 +56,8 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $job->load('company');
-        return view('jobs.show', compact('job'));
+
+        return view('main.jobs.show', compact('job'));
     }
 
     /**
@@ -63,7 +66,8 @@ class JobController extends Controller
     public function edit(Job $job)
     {
         $companies = Company::all();
-        return view('jobs.edit', compact('job', 'companies'));
+        
+        return view('main.jobs.edit', compact('job', 'companies'));
     }
 
     /**

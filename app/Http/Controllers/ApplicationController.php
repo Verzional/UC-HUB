@@ -15,7 +15,8 @@ class ApplicationController extends Controller
     public function index()
     {
         $applications = Application::with('user', 'job')->get();
-        return view('applications.index', compact('applications'));
+        
+        return view('main.applications.index', compact('applications'));
     }
 
     /**
@@ -25,7 +26,8 @@ class ApplicationController extends Controller
     {
         $users = User::all();
         $jobs = Job::all();
-        return view('applications.create', compact('users', 'jobs'));
+
+        return view('main.applications.create', compact('users', 'jobs'));
     }
 
     /**
@@ -53,7 +55,8 @@ class ApplicationController extends Controller
     public function show(Application $application)
     {
         $application->load('user', 'job');
-        return view('applications.show', compact('application'));
+
+        return view('main.applications.show', compact('application'));
     }
 
     /**
@@ -63,7 +66,8 @@ class ApplicationController extends Controller
     {
         $users = User::all();
         $jobs = Job::all();
-        return view('applications.edit', compact('application', 'users', 'jobs'));
+
+        return view('main.applications.edit', compact('application', 'users', 'jobs'));
     }
 
     /**

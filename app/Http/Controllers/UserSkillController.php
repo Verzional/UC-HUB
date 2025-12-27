@@ -15,7 +15,8 @@ class UserSkillController extends Controller
     public function index()
     {
         $userSkills = UserSkill::with('user', 'skill')->get();
-        return view('user-skills.index', compact('userSkills'));
+
+        return view('main.user-skills.index', compact('userSkills'));
     }
 
     /**
@@ -25,7 +26,8 @@ class UserSkillController extends Controller
     {
         $users = User::all();
         $skills = Skill::all();
-        return view('user-skills.create', compact('users', 'skills'));
+
+        return view('main.user-skills.create', compact('users', 'skills'));
     }
 
     /**
@@ -54,7 +56,8 @@ class UserSkillController extends Controller
     public function show(UserSkill $userSkill)
     {
         $userSkill->load('user', 'skill');
-        return view('user-skills.show', compact('userSkill'));
+
+        return view('main.user-skills.show', compact('userSkill'));
     }
 
     /**
@@ -64,7 +67,8 @@ class UserSkillController extends Controller
     {
         $users = User::all();
         $skills = Skill::all();
-        return view('user-skills.edit', compact('userSkill', 'users', 'skills'));
+
+        return view('main.user-skills.edit', compact('userSkill', 'users', 'skills'));
     }
 
     /**

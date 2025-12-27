@@ -15,7 +15,8 @@ class JobSkillController extends Controller
     public function index()
     {
         $jobSkills = JobSkill::with('job', 'skill')->get();
-        return view('job-skills.index', compact('jobSkills'));
+
+        return view('main.job-skills.index', compact('jobSkills'));
     }
 
     /**
@@ -25,7 +26,8 @@ class JobSkillController extends Controller
     {
         $jobs = Job::all();
         $skills = Skill::all();
-        return view('job-skills.create', compact('jobs', 'skills'));
+
+        return view('main.job-skills.create', compact('jobs', 'skills'));
     }
 
     /**
@@ -54,7 +56,8 @@ class JobSkillController extends Controller
     public function show(JobSkill $jobSkill)
     {
         $jobSkill->load('job', 'skill');
-        return view('job-skills.show', compact('jobSkill'));
+
+        return view('main.job-skills.show', compact('jobSkill'));
     }
 
     /**
@@ -64,7 +67,8 @@ class JobSkillController extends Controller
     {
         $jobs = Job::all();
         $skills = Skill::all();
-        return view('job-skills.edit', compact('jobSkill', 'jobs', 'skills'));
+
+        return view('main.job-skills.edit', compact('jobSkill', 'jobs', 'skills'));
     }
 
     /**

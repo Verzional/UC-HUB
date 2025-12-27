@@ -13,7 +13,8 @@ class SkillController extends Controller
     public function index()
     {
         $skills = Skill::all();
-        return view('skills.index', compact('skills'));
+
+        return view('main.skills.index', compact('skills'));
     }
 
     /**
@@ -21,7 +22,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        return view('skills.create');
+        return view('main.skills.create');
     }
 
     /**
@@ -44,7 +45,7 @@ class SkillController extends Controller
      */
     public function show(Skill $skill)
     {
-        return view('skills.show', compact('skill'));
+        return view('main.skills.show', compact('skill'));
     }
 
     /**
@@ -52,7 +53,7 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        return view('skills.edit', compact('skill'));
+        return view('main.skills.edit', compact('skill'));
     }
 
     /**
