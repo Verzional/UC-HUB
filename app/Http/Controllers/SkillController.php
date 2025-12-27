@@ -12,7 +12,8 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        $skills = Skill::all();
+        return view('skills.index', compact('skills'));
     }
 
     /**
@@ -20,7 +21,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('skills.create');
     }
 
     /**
@@ -28,7 +29,14 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255|unique:skills',
+            'description' => 'nullable|string',
+        ]);
+
+        Skill::create($request->all());
+
+        return redirect()->route('skills.index')->with('success', 'Skill created successfully.');
     }
 
     /**
@@ -36,7 +44,7 @@ class SkillController extends Controller
      */
     public function show(Skill $skill)
     {
-        //
+        return view('skills.show', compact('skill'));
     }
 
     /**
@@ -44,7 +52,7 @@ class SkillController extends Controller
      */
     public function edit(Skill $skill)
     {
-        //
+        return view('skills.edit', compact('skill'));
     }
 
     /**
@@ -52,7 +60,14 @@ class SkillController extends Controller
      */
     public function update(Request $request, Skill $skill)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255|unique:skills,name,' . $skill->id,
+            'description' => 'nullable|string',
+        ]);
+
+        $skill->update($request->all());
+
+        return redirect()->route('skills.index')->with('success', 'Skill updated successfully.');
     }
 
     /**
@@ -60,6 +75,8 @@ class SkillController extends Controller
      */
     public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+
+        return redirect()->route('skills.index')->with('success', 'Skill deleted successfully.');
     }
 }

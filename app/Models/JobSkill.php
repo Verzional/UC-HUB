@@ -18,4 +18,14 @@ class JobSkill extends Model
         'job_id',
         'skill_id',
     ];
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
 }

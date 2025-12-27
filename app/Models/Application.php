@@ -18,7 +18,18 @@ class Application extends Model
         'user_id',
         'job_id',
         'cover_letter',
+        'resume_path',
+        'portfolio_path',
         'status',
-        'applied_at',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }

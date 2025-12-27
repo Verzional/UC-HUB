@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\User;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -12,7 +14,8 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        $applications = Application::with('user', 'job')->get();
+        return view('applications.index', compact('applications'));
     }
 
     /**
@@ -20,7 +23,9 @@ class ApplicationController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $jobs = Job::all();
+        return view('applications.create', compact('users', 'jobs'));
     }
 
     /**
@@ -28,7 +33,18 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'job_id' => 'required|exists:jobs,id',
+            'cover_letter' => 'nullable|string',
+            'resume_path' => 'nullable|string',
+            'portfolio_path' => 'nullable|string',
+            'status' => 'nullable|string',
+        ]);
+
+        Application::create($request->all());
+
+        return redirect()->route('applications.index')->with('success', 'Application created successfully.');
     }
 
     /**
@@ -36,7 +52,8 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        //
+        $application->load('user', 'job');
+        return view('applications.show', compact('application'));
     }
 
     /**
@@ -44,7 +61,9 @@ class ApplicationController extends Controller
      */
     public function edit(Application $application)
     {
-        //
+        $users = User::all();
+        $jobs = Job::all();
+        return view('applications.edit', compact('application', 'users', 'jobs'));
     }
 
     /**
@@ -52,7 +71,18 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, Application $application)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'job_id' => 'required|exists:jobs,id',
+            'cover_letter' => 'nullable|string',
+            'resume_path' => 'nullable|string',
+            'portfolio_path' => 'nullable|string',
+            'status' => 'nullable|string',
+        ]);
+
+        $application->update($request->all());
+
+        return redirect()->route('applications.index')->with('success', 'Application updated successfully.');
     }
 
     /**
@@ -60,6 +90,8 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        //
+        $application->delete();
+
+        return redirect()->route('applications.index')->with('success', 'Application deleted successfully.');
     }
 }

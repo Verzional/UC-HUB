@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserSkill;
+use App\Models\User;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class UserSkillController extends Controller
@@ -12,7 +14,8 @@ class UserSkillController extends Controller
      */
     public function index()
     {
-        //
+        $userSkills = UserSkill::with('user', 'skill')->get();
+        return view('user-skills.index', compact('userSkills'));
     }
 
     /**
@@ -20,7 +23,9 @@ class UserSkillController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $skills = Skill::all();
+        return view('user-skills.create', compact('users', 'skills'));
     }
 
     /**
@@ -28,7 +33,19 @@ class UserSkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'skill_id' => 'required|exists:skills,id',
+        ]);
+
+        // Check if already exists
+        if (UserSkill::where('user_id', $request->user_id)->where('skill_id', $request->skill_id)->exists()) {
+            return redirect()->back()->withErrors(['error' => 'This user skill combination already exists.']);
+        }
+
+        UserSkill::create($request->only(['user_id', 'skill_id']));
+
+        return redirect()->route('user-skills.index')->with('success', 'User skill created successfully.');
     }
 
     /**
@@ -36,7 +53,8 @@ class UserSkillController extends Controller
      */
     public function show(UserSkill $userSkill)
     {
-        //
+        $userSkill->load('user', 'skill');
+        return view('user-skills.show', compact('userSkill'));
     }
 
     /**
@@ -44,7 +62,9 @@ class UserSkillController extends Controller
      */
     public function edit(UserSkill $userSkill)
     {
-        //
+        $users = User::all();
+        $skills = Skill::all();
+        return view('user-skills.edit', compact('userSkill', 'users', 'skills'));
     }
 
     /**
@@ -52,7 +72,19 @@ class UserSkillController extends Controller
      */
     public function update(Request $request, UserSkill $userSkill)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'skill_id' => 'required|exists:skills,id',
+        ]);
+
+        // Check if another exists
+        if (UserSkill::where('user_id', $request->user_id)->where('skill_id', $request->skill_id)->where('id', '!=', $userSkill->id)->exists()) {
+            return redirect()->back()->withErrors(['error' => 'This user skill combination already exists.']);
+        }
+
+        $userSkill->update($request->only(['user_id', 'skill_id']));
+
+        return redirect()->route('user-skills.index')->with('success', 'User skill updated successfully.');
     }
 
     /**
@@ -60,6 +92,8 @@ class UserSkillController extends Controller
      */
     public function destroy(UserSkill $userSkill)
     {
-        //
+        $userSkill->delete();
+
+        return redirect()->route('user-skills.index')->with('success', 'User skill deleted successfully.');
     }
 }
