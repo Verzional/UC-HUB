@@ -17,6 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('student_id')->unique();
+            $table->string('phone_number')->nullable();
+            $table->integer('cohort_year')->nullable();
+            $table->string('major')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('cv_path', 2048)->nullable();
+            $table->string('portfolio_path', 2048)->nullable();
+            $table->string('role')->default('student');
             $table->rememberToken();
             $table->timestamps();
         });
