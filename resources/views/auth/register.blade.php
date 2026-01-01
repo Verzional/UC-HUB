@@ -20,7 +20,7 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Ciputra Email')" />
             <x-text-input
                 id="email"
                 class="mt-1 block w-full"
@@ -31,6 +31,23 @@
                 autocomplete="username"
             />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Student ID -->
+        <div class="mt-4">
+            <x-input-label for="student_id" :value="__('Student ID')" />
+            <x-text-input
+                id="student_id"
+                class="mt-1 block w-full"
+                type="text"
+                name="student_id"
+                :value="old('student_id')"
+                required
+            />
+            <x-input-error
+                :messages="$errors->get('student_id')"
+                class="mt- 2"
+            />
         </div>
 
         <!-- Password -->
@@ -76,12 +93,10 @@
                 class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 href="{{ route('login') }}"
             >
-                {{ __('Already registered?') }}
+                Already registered?
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            <x-primary-button class="ms-4">Register</x-primary-button>
         </div>
     </form>
 </x-guest-layout>

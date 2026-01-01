@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Main;
 
-use App\Models\Job;
+use App\Models\Employment;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class EmploymentController extends Controller
 {
     /**
      * Display a listing of the resource.
