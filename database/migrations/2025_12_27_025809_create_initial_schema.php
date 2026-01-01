@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('employments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description');
@@ -39,7 +39,7 @@ return new class extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->foreignId('employment_id')->constrained()->onDelete('cascade');
             $table->text('cover_letter')->nullable();
             $table->string('resume_path', 2048)->nullable();
             $table->string('portfolio_path', 2048)->nullable();
@@ -54,9 +54,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('job_skill', function (Blueprint $table) {
+        Schema::create('employment_skill', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->foreignId('employment_id')->constrained()->onDelete('cascade');
             $table->foreignId('skill_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
@@ -75,10 +75,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('companies');
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('employments');
         Schema::dropIfExists('applications');
         Schema::dropIfExists('skills');
-        Schema::dropIfExists('job_skill');
+        Schema::dropIfExists('employment_skill');
         Schema::dropIfExists('user_skill');
     }
 };
