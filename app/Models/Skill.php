@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Job;
 
 class Skill extends Model
 {
@@ -19,9 +20,9 @@ class Skill extends Model
         'industry',
     ];
 
-    public function employments()
+    public function jobs()
     {
-        return $this->belongsToMany(Employment::class, 'employment_skill');
+        return $this->belongsToMany(Job::class, 'employment_skill');
     }
 
     public function users()

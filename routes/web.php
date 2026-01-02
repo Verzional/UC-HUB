@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Main\ApplicationController;
 use App\Http\Controllers\Main\CompanyController;
-use App\Http\Controllers\Main\EmploymentController;
+use App\Http\Controllers\Main\JobController;
 use App\Http\Controllers\Main\SkillController;
 use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\ProfileController;
@@ -35,7 +35,7 @@ Route::resource('/applications', ApplicationController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/companies', CompanyController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);
-Route::resource('/jobs', EmploymentController::class)
+Route::resource('/jobs', JobController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/skills', SkillController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employment extends Model
+class Job extends Model
 {
     /** @use \Illuminate\Database\Eloquent\Factories\HasFactory<\Database\Factories\JobFactory> */
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
+
+    protected $table = 'employments';
 
     /**
      * The attributes that are mass assignable.

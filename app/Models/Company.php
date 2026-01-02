@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Job;
 
 class Company extends Model
 {
@@ -23,8 +24,8 @@ class Company extends Model
         'profile_photo_path',
     ];
 
-    public function employments()
+    public function jobs()
     {
-        return $this->hasMany(Employment::class);
+        return $this->hasMany(Job::class);
     }
 }
