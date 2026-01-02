@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\Models\Employment;
+use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -13,9 +13,9 @@ class EmploymentController extends Controller
      */
     public function index()
     {
-        $jobs = Job::with('company')->get();
+        $employments = Employment::with('company')->get();
 
-        return view('main.jobs.index', compact('jobs'));
+        return view('main.employments.index', compact('employments'));
     }
 
     /**
@@ -25,7 +25,7 @@ class EmploymentController extends Controller
     {
         $companies = Company::all();
 
-        return view('main.jobs.create', compact('companies'));
+        return view('main.employments.create', compact('companies'));
     }
 
     /**
@@ -45,7 +45,7 @@ class EmploymentController extends Controller
             'end_time' => 'nullable|date',
         ]);
 
-        Job::create($request->all());
+        Employment::create($request->all());
 
         return redirect()->route('jobs.index')->with('success', 'Job created successfully.');
     }
@@ -53,21 +53,21 @@ class EmploymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Job $job)
+    public function show(Employment $employment)
     {
-        $job->load('company');
+        $employment->load('company');
 
-        return view('main.jobs.show', compact('job'));
+        return view('main.employments.show', compact('employment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Job $job)
+    public function edit(Employment $employment)
     {
         $companies = Company::all();
-        
-        return view('main.jobs.edit', compact('job', 'companies'));
+
+        return view('main.employments.edit', compact('employment', 'companies'));
     }
 
     /**
@@ -87,7 +87,7 @@ class EmploymentController extends Controller
             'end_time' => 'nullable|date',
         ]);
 
-        $job->update($request->all());
+        $employment->update($request->all());
 
         return redirect()->route('jobs.index')->with('success', 'Job updated successfully.');
     }
@@ -95,9 +95,9 @@ class EmploymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Job $job)
+    public function destroy(Employment $employment)
     {
-        $job->delete();
+        $employment->delete();
 
         return redirect()->route('jobs.index')->with('success', 'Job deleted successfully.');
     }

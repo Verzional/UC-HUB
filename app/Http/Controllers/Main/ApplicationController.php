@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Http\Controllers\Controller;
 use App\Models\Application;
-use App\Models\User;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -15,7 +16,7 @@ class ApplicationController extends Controller
     public function index()
     {
         $applications = Application::with('user', 'job')->get();
-        
+
         return view('main.applications.index', compact('applications'));
     }
 

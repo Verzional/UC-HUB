@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Http\Controllers\Controller;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 
@@ -62,7 +63,7 @@ class SkillController extends Controller
     public function update(Request $request, Skill $skill)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:skills,name,' . $skill->id,
+            'name' => 'required|string|max:255|unique:skills,name,'.$skill->id,
             'description' => 'nullable|string',
         ]);
 

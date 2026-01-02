@@ -3,11 +3,9 @@
 use App\Http\Controllers\Main\ApplicationController;
 use App\Http\Controllers\Main\CompanyController;
 use App\Http\Controllers\Main\EmploymentController;
-use App\Http\Controllers\Main\JobSkillController;
-use App\Http\Controllers\Main\ProfileController;
 use App\Http\Controllers\Main\SkillController;
 use App\Http\Controllers\Main\UserController;
-use App\Http\Controllers\Main\UserSkillController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -20,6 +18,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Admin Dashboard
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth', 'verified', 'role:Admin'])->name('admin.dashboard');
+
 // Profile Management
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,14 +32,14 @@ Route::middleware('auth')->group(function () {
 
 // Resource Routes
 Route::resource('/applications', ApplicationController::class)
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/companies', CompanyController::class)
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/jobs', EmploymentController::class)
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/skills', SkillController::class)
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/users', UserController::class)
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified', 'role:ICE']);
 
 require __DIR__.'/auth.php';
