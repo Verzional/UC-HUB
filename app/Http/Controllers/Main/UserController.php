@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -35,13 +36,37 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'student_id' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:255',
+            'cohort_year' => 'nullable|integer',
+            'major' => 'nullable|string|max:255',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'cv_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'portfolio_path' => 'nullable|string|max:255',
+            'role' => 'required|string|in:Student,ICE,Admin',
         ]);
 
-        User::create([
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-        ]);
+            'student_id' => $request->student_id,
+            'phone_number' => $request->phone_number,
+            'cohort_year' => $request->cohort_year,
+            'major' => $request->major,
+            'portfolio_path' => $request->portfolio_path,
+            'role' => $request->role,
+        ];
+
+        if ($request->hasFile('profile_photo_path')) {
+            $data['profile_photo_path'] = $request->file('profile_photo_path')->store('profiles', 'public');
+        }
+
+        if ($request->hasFile('cv_path')) {
+            $data['cv_path'] = $request->file('cv_path')->store('cvs', 'public');
+        }
+
+        User::create($data);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
@@ -71,13 +96,46 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'password' => 'nullable|string|min:8|confirmed',
+            'student_id' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:255',
+            'cohort_year' => 'nullable|integer',
+            'major' => 'nullable|string|max:255',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'cv_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            'portfolio_path' => 'nullable|string|max:255',
+            'role' => 'required|string|in:Student,ICE,Admin',
         ]);
 
-        $user->update([
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
-        ]);
+            'student_id' => $request->student_id,
+            'phone_number' => $request->phone_number,
+            'cohort_year' => $request->cohort_year,
+            'major' => $request->major,
+            'portfolio_path' => $request->portfolio_path,
+            'role' => $request->role,
+        ];
+
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        if ($request->hasFile('profile_photo_path')) {
+            if ($user->profile_photo_path) {
+                Storage::disk('public')->delete($user->profile_photo_path);
+            }
+            $data['profile_photo_path'] = $request->file('profile_photo_path')->store('profiles', 'public');
+        }
+
+        if ($request->hasFile('cv_path')) {
+            if ($user->cv_path) {
+                Storage::disk('public')->delete($user->cv_path);
+            }
+            $data['cv_path'] = $request->file('cv_path')->store('cvs', 'public');
+        }
+
+        $user->update($data);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
