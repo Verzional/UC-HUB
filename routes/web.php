@@ -6,6 +6,7 @@ use App\Http\Controllers\Main\JobController;
 use App\Http\Controllers\Main\SkillController;
 use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ICE\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -47,9 +48,23 @@ Route::resource('/users', UserController::class)
 Route::resource('/surveys', \App\Http\Controllers\Main\SurveyController::class)
     ->middleware(['auth', 'verified']);
 
-Route::get('/ice/dashboard', function () {
-    return view('main.ice.dashboard');
-})->name('ice.dashboard');
-// ->middleware(['auth', 'verified', 'role:ICE']);
+// ICE Routes Group 
+Route::middleware(['auth', 'verified', 'role:ICE'])
+    ->prefix('ice')
+    ->name('ice.')
+    ->group(function () {
 
+        // ICE Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
+
+        // Companies
+        Route::resource('/companies', CompanyController::class);
+
+        // Jobs
+        Route::resource('/jobs', JobController::class);
+
+        // Applications
+        Route::resource('/applications', ApplicationController::class);
+    });
 require __DIR__.'/auth.php';

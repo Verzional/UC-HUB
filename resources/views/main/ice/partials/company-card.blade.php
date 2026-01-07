@@ -1,61 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="text-xl font-semibold text-gray-800">
-                ICE Dashboard
-            </h2>
-
-            <span class="rounded-full bg-gray-100 px-4 py-1 text-sm text-gray-600">
-                {{ now()->format('l, d M Y') }}
-            </span>
+<div class="rounded-lg bg-white p-5 shadow transition hover:shadow-lg">
+    <div class="mb-3 flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded bg-orange-100 text-orange-600 font-bold">
+            {{ strtoupper(substr($company->name, 0, 1)) }}
         </div>
-    </x-slot>
-
-    <div class="py-8">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-            {{-- Welcome --}}
-            <div class="mb-6 flex items-center gap-4">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-400 text-white">
-                    👤
-                </div>
-                <div>
-                    <p class="text-lg font-semibold text-gray-800">Welcome!</p>
-                    <p class="text-sm text-gray-500">
-                        Manage companies and job opportunities
-                    </p>
-                </div>
-            </div>
-
-            {{-- Company List --}}
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-                {{-- Dummy data (UI only) --}}
-                @php
-                    $companies = [
-                        [
-                            'name' => 'PT Teknologi Nusantara',
-                            'industry' => 'Technology',
-                            'address' => 'Jakarta',
-                        ],
-                        [
-                            'name' => 'CV Kreatif Digital',
-                            'industry' => 'Creative Industry',
-                            'address' => 'Bandung',
-                        ],
-                        [
-                            'name' => 'PT Edu Solusi',
-                            'industry' => 'Education',
-                            'address' => 'Surabaya',
-                        ],
-                    ];
-                @endphp
-
-                @foreach ($companies as $company)
-                    @include('main.ice.partials.company-card', ['company' => $company])
-                @endforeach
-
-            </div>
+        <div>
+            <h4 class="font-semibold text-gray-800">
+                {{ $company->name }}
+            </h4>
+            <p class="text-sm text-gray-500">
+                {{ $company->industry ?? 'Industry not set' }}
+            </p>
         </div>
     </div>
-</x-app-layout>
+
+    <p class="mb-4 text-sm text-gray-600 line-clamp-3">
+        {{ $company->description ?? 'No description available.' }}
+    </p>
+
+    <div class="flex items-center justify-between">
+        <span class="text-xs text-gray-500">
+            📍 {{ $company->address ?? 'Unknown location' }}
+        </span>
+
+        <a
+            href="{{ route('companies.show', $company) }}"
+            class="text-sm font-medium text-orange-600 hover:underline"
+        >
+            View →
+        </a>
+    </div>
+</div>
