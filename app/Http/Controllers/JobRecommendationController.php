@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\JobRecommendationService;
-use Illuminate\Http\Request;
 
 class JobRecommendationController extends Controller
 {

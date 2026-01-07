@@ -67,8 +67,7 @@ class SkillController extends Controller
     public function update(Request $request, Skill $skill)
     {
         $request->validate([
-            'name' =>
-                'required|string|max:255|unique:skills,name,' . $skill->id,
+            'name' => 'required|string|max:255|unique:skills,name,'.$skill->id,
             'industry' => 'required|string|max:255',
         ]);
 

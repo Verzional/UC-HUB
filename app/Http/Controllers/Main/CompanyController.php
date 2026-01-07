@@ -38,8 +38,7 @@ class CompanyController extends Controller
             'address' => 'nullable|string',
             'website' => 'nullable|url',
             'industry' => 'nullable|string',
-            'profile_photo_path' =>
-                'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = $request->all();
@@ -86,8 +85,7 @@ class CompanyController extends Controller
             'address' => 'nullable|string',
             'website' => 'nullable|url',
             'industry' => 'nullable|string',
-            'profile_photo_path' =>
-                'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = $request->all();

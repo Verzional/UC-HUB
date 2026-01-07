@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\StudentRecommendationService;
 use App\Models\Job;
-use Illuminate\Http\Request;
 
 class StudentRecommendationController extends Controller
 {

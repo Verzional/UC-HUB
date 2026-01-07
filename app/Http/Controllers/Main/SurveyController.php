@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
 use App\Models\Skill;
 use App\Models\Survey;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,7 +52,7 @@ class SurveyController extends Controller
         // Create wishlists
         if ($request->wishlists) {
             foreach ($request->wishlists as $companyName) {
-                if (!empty($companyName)) {
+                if (! empty($companyName)) {
                     Wishlist::create([
                         'survey_id' => $survey->id,
                         'company_name' => $companyName,
