@@ -196,20 +196,20 @@
                             >
                                 <option value="">Select Role</option>
                                 <option
-                                    value="Student"
-                                    {{ old('role') == 'Student' ? 'selected' : '' }}
+                                    value="student"
+                                    {{ old('role') == 'student' ? 'selected' : '' }}
                                 >
                                     Student
                                 </option>
                                 <option
-                                    value="ICE"
-                                    {{ old('role') == 'ICE' ? 'selected' : '' }}
+                                    value="ice"
+                                    {{ old('role') == 'ice' ? 'selected' : '' }}
                                 >
                                     ICE
                                 </option>
                                 <option
-                                    value="Admin"
-                                    {{ old('role') == 'Admin' ? 'selected' : '' }}
+                                    value="admin"
+                                    {{ old('role') == 'admin' ? 'selected' : '' }}
                                 >
                                     Admin
                                 </option>

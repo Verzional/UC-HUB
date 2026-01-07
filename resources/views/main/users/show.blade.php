@@ -75,7 +75,7 @@
                         <div>
                             <h4 class="font-semibold text-gray-700">Role</h4>
                             <p class="text-gray-900">
-                                {{ $user->role ?? 'Student' }}
+                                {{ $user->role ?? 'student' }}
                             </p>
                         </div>
 

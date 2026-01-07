@@ -76,7 +76,7 @@
                                     <td
                                         class="whitespace-nowrap px-6 py-4 text-sm text-gray-500"
                                     >
-                                        {{ $user->role ?? 'Student' }}
+                                        {{ $user->role ?? 'student' }}
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-6 py-4 text-sm font-medium"

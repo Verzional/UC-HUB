@@ -198,20 +198,20 @@
                             >
                                 <option value="">Select Role</option>
                                 <option
-                                    value="Student"
-                                    {{ old('role', $user->role) == 'Student' ? 'selected' : '' }}
+                                    value="student"
+                                    {{ old('role', $user->role) == 'student' ? 'selected' : '' }}
                                 >
                                     Student
                                 </option>
                                 <option
-                                    value="ICE"
-                                    {{ old('role', $user->role) == 'ICE' ? 'selected' : '' }}
+                                    value="ice"
+                                    {{ old('role', $user->role) == 'ice' ? 'selected' : '' }}
                                 >
                                     ICE
                                 </option>
                                 <option
-                                    value="Admin"
-                                    {{ old('role', $user->role) == 'Admin' ? 'selected' : '' }}
+                                    value="admin"
+                                    {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}
                                 >
                                     Admin
                                 </option>
