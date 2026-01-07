@@ -27,16 +27,10 @@
                         Students
                     </x-nav-link>
                     <x-nav-link
-                        :href="route('students.jobs.index')"
-                        :active="request()->routeIs('students.jobs.*')"
-                    >
-                        My Jobs
-                    </x-nav-link>
-                    <x-nav-link
                         :href="route('recommend.jobs')"
                         :active="request()->routeIs('recommend.jobs')"
                     >
-                        Job Recommendations
+                        Jobs
                     </x-nav-link>
                 </div>
             </div>
@@ -89,11 +83,8 @@
             <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.*')">
                 Students
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('students.jobs.index')" :active="request()->routeIs('students.jobs.*')">
-                My Jobs
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('recommend.jobs')" :active="request()->routeIs('recommend.jobs')">
-                Job Recommendations
+                Jobs
             </x-responsive-nav-link>
         </div>
 

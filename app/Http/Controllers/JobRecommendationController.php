@@ -22,7 +22,11 @@ class JobRecommendationController extends Controller
         $recommendations = $this->jobRecommendationService->recommendForUser($user);
         $availableJobs = Job::with(['skills', 'company'])->get();
 
-        return view('students.jobs.index', compact('user', 'recommendations', 'availableJobs'));
+        return view('students.jobs.index', [
+            'user' => $user,
+            'recommendedJobs' => $recommendations,
+            'availableJobs' => $availableJobs,
+        ]);
     }
 
     public function show(Job $job)
