@@ -5,15 +5,29 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Job;
+use App\Models\Survey;
 
 class ICEDashboardController extends Controller
 {
-    public function index()
-    {
-        $totalCompanies = Company::count();
-        $totalJobs = Job::count();
-        $companies = Company::latest()->take(9)->get();
+  public function index()
+{
+    // Semua company dari database
+    $allCompanies = Company::all();
 
-        return view('main.ice.dashboard', compact('totalCompanies', 'totalJobs', 'companies'));
-    }
+    // Top surveyed companies (sementara = all companies, backend belum ada pivot)
+    $topSurveyedCompanies = Company::take(10)->get();
+
+    // Jobs & Surveys
+    $jobs = Job::latest()->take(20)->get();
+    $surveys = Survey::latest()->take(20)->get();
+
+    return view('main.ice.dashboard', [
+        'allCompanies' => $allCompanies,
+        'topSurveyedCompanies' => $topSurveyedCompanies,
+        'jobs' => $jobs,
+        'surveys' => $surveys,
+    ]);
+}
+
+
 }
