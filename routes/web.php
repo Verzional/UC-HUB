@@ -42,4 +42,9 @@ Route::resource('/skills', SkillController::class)
 Route::resource('/users', UserController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);
 
+Route::get('/ice/dashboard', function () {
+    return view('main.ice.dashboard');
+})->name('ice.dashboard');
+// ->middleware(['auth', 'verified', 'role:ICE']);
+
 require __DIR__.'/auth.php';
