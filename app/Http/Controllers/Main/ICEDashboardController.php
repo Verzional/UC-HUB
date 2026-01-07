@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Job;
 use App\Models\Survey;
+use App\Models\Skill;
 
 class ICEDashboardController extends Controller
 {
@@ -19,13 +20,15 @@ class ICEDashboardController extends Controller
 
     // Jobs & Surveys
     $jobs = Job::latest()->take(20)->get();
-    $surveys = Survey::latest()->take(20)->get();
+    $surveys = Survey::with(['user', 'wishlists'])->get();
+    $skills = Skill::all();
 
     return view('main.ice.dashboard', [
         'allCompanies' => $allCompanies,
         'topSurveyedCompanies' => $topSurveyedCompanies,
         'jobs' => $jobs,
         'surveys' => $surveys,
+        'skills' => $skills,
     ]);
 }
 
