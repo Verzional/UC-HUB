@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <form
                         method="POST"
-                        action="{{ route('admin.users.store') }}"
+                        action="{{ route('users.store') }}"
                         enctype="multipart/form-data"
                     >
                         @csrf
@@ -196,20 +196,20 @@
                             >
                                 <option value="">Select Role</option>
                                 <option
-                                    value="student"
-                                    {{ old('role') == 'student' ? 'selected' : '' }}
+                                    value="Student"
+                                    {{ old('role') == 'Student' ? 'selected' : '' }}
                                 >
                                     Student
                                 </option>
                                 <option
-                                    value="ice"
-                                    {{ old('role') == 'ice' ? 'selected' : '' }}
+                                    value="ICE"
+                                    {{ old('role') == 'ICE' ? 'selected' : '' }}
                                 >
                                     ICE
                                 </option>
                                 <option
-                                    value="admin"
-                                    {{ old('role') == 'admin' ? 'selected' : '' }}
+                                    value="Admin"
+                                    {{ old('role') == 'Admin' ? 'selected' : '' }}
                                 >
                                     Admin
                                 </option>
@@ -286,7 +286,7 @@
 
                         <div class="flex items-center justify-end">
                             <a
-                                href="{{ route('admin.users.index') }}"
+                                href="{{ route('users.index') }}"
                                 class="mr-2 rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400"
                             >
                                 Cancel

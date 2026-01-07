@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('main.users.index', compact('users'));
     }
 
     /**
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('main.users.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class UserController extends Controller
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cv_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'portfolio_path' => 'nullable|string|max:255',
-            'role' => 'required|string|in:student,ice,admin',
+            'role' => 'required|string|in:Student,ICE,Admin',
         ]);
 
         $data = [
@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        return view('main.users.show', compact('user'));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        return view('main.users.edit', compact('user'));
     }
 
     /**
@@ -103,7 +103,7 @@ class UserController extends Controller
             'profile_photo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'cv_path' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'portfolio_path' => 'nullable|string|max:255',
-            'role' => 'required|string|in:student,ice,admin',
+            'role' => 'required|string|in:Student,ICE,Admin',
         ]);
 
         $data = [

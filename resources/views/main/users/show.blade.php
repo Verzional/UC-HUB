@@ -13,13 +13,13 @@
                         <h3 class="text-lg font-medium">{{ $user->name }}</h3>
                         <div>
                             <a
-                                href="{{ route('admin.users.edit', $user) }}"
+                                href="{{ route('users.edit', $user) }}"
                                 class="mr-2 rounded bg-yellow-500 px-4 py-2 font-bold text-white hover:bg-yellow-700"
                             >
                                 Edit
                             </a>
                             <a
-                                href="{{ route('admin.users.index') }}"
+                                href="{{ route('users.index') }}"
                                 class="rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
                             >
                                 Back to List
@@ -75,7 +75,7 @@
                         <div>
                             <h4 class="font-semibold text-gray-700">Role</h4>
                             <p class="text-gray-900">
-                                {{ $user->role ?? 'student' }}
+                                {{ $user->role ?? 'Student' }}
                             </p>
                         </div>
 
@@ -152,7 +152,7 @@
                     <div class="mt-6">
                         <form
                             method="POST"
-                            action="{{ route('admin.users.destroy', $user) }}"
+                            action="{{ route('users.destroy', $user) }}"
                             class="inline"
                         >
                             @csrf

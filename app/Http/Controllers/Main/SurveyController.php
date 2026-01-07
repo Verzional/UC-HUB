@@ -58,7 +58,7 @@ class SurveyController extends Controller
         // Create wishlists
         if ($request->wishlists) {
             foreach ($request->wishlists as $companyName) {
-                if (! empty($companyName)) {
+                if (!empty($companyName)) {
                     Wishlist::create([
                         'survey_id' => $survey->id,
                         'company_name' => $companyName,
