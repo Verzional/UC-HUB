@@ -42,27 +42,39 @@
         {{-- Main Content --}}
         <div class="flex-1 p-6 overflow-y-auto">
 
-            {{-- Companies Tab --}}
-            <div x-show="tab === 'companies'" x-transition>
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-semibold text-gray-800">Companies</h2>
-                    <button
-                        @click="openCompanyModal = true"
-                        class="rounded bg-orange-500 px-4 py-2 text-white hover:bg-orange-700 transition"
-                    >
-                        + Create Company
-                    </button>
-                </div>
+           {{-- Companies Tab --}}
+<div x-show="tab === 'companies'" x-transition>
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">Companies</h2>
+        <button
+            @click="openCompanyModal = true"
+            class="rounded bg-orange-500 px-4 py-2 text-white hover:bg-orange-700 transition"
+        >
+            + Create Company
+        </button>
+    </div>
 
-                {{-- Grid Companies --}}
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @forelse($allCompanies ?? [] as $company)
-                        @include('main.ice.partials.company-card', ['company' => $company, 'isTop' => false])
-                    @empty
-                        <p class="text-gray-500 col-span-3">No companies found.</p>
-                    @endforelse
-                </div>
-            </div>
+    {{-- Top Survey Companies --}}
+    <h3 class="text-lg font-semibold text-gray-700 mb-2">Top Survey Companies</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        @forelse($topSurveyCompanies ?? [] as $company)
+            @include('main.ice.partials.company-card', ['company' => $company, 'isTop' => true])
+        @empty
+            <p class="text-gray-500 col-span-3">No top survey companies.</p>
+        @endforelse
+    </div>
+
+    {{-- All Companies --}}
+    <h3 class="text-lg font-semibold text-gray-700 mb-2">All Companies</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @forelse($allCompanies ?? [] as $company)
+            @include('main.ice.partials.company-card', ['company' => $company, 'isTop' => false])
+        @empty
+            <p class="text-gray-500 col-span-3">No companies found.</p>
+        @endforelse
+    </div>
+</div>
+
 
             {{-- Jobs Tab --}}
             <div x-show="tab === 'jobs'" x-transition>
