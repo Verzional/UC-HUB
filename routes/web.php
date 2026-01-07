@@ -15,6 +15,9 @@ Route::get('/', function () {
 
 // Dashboard
 Route::get('/dashboard', function () {
+    if (!auth()->user()->survey) {
+        return redirect()->route('surveys.create');
+    }
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -41,6 +44,8 @@ Route::resource('/skills', SkillController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);
 Route::resource('/users', UserController::class)
     ->middleware(['auth', 'verified', 'role:ICE']);
+Route::resource('/surveys', \App\Http\Controllers\Main\SurveyController::class)
+    ->middleware(['auth', 'verified']);
 
 Route::get('/ice/dashboard', function () {
     return view('main.ice.dashboard');

@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Skill::class, 'user_skill');
     }
+
+    public function survey()
+    {
+        return $this->hasOne(Survey::class);
+    }
 }
