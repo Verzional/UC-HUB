@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('primary_interest');
             $table->decimal('cgpa', 3, 2);
-
             $table->timestamps();
         });
     }
