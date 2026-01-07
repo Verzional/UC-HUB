@@ -71,9 +71,9 @@
                             class="mb-4"
                             x-data="{
                                 allSkills: @js($skills->toArray()),
-                                skills: @js(old('skills', ['', '', '', '', ''])),
-                                searchSkills: @js(array_fill(0, 5, '')),
-                                openSkills: @js(array_fill(0, 5, false)),
+                                skills: @js(old('skills', [''])),
+                                searchSkills: @js(array_fill(0, count(old('skills', [''])), '')),
+                                openSkills: @js(array_fill(0, count(old('skills', [''])), false)),
                                 updateSearchSkill(index) {
                                     if (this.skills[index]) {
                                         const skill = this.allSkills.find((s) => s.id == this.skills[index])
@@ -93,14 +93,14 @@
                             <label
                                 class="block text-sm font-medium text-gray-700"
                             >
-                                Skills (Select 5)
+                                Skills (Max 5)
                             </label>
                             <template
                                 x-for="(skill, index) in skills"
                                 :key="index"
                             >
-                                <div class="mb-2">
-                                    <div class="relative">
+                                <div class="flex items-center mb-2">
+                                    <div class="relative flex-1">
                                         <input
                                             type="text"
                                             x-model="searchSkills[index]"
@@ -134,8 +134,24 @@
                                         :name="'skills[' + index + ']'"
                                         x-model="skills[index]"
                                     />
+                                    <button
+                                        type="button"
+                                        @click="skills.splice(index, 1); searchSkills.splice(index, 1); openSkills.splice(index, 1)"
+                                        x-show="skills.length > 1"
+                                        class="ml-2 rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-700"
+                                    >
+                                        Remove
+                                    </button>
                                 </div>
                             </template>
+                            <button
+                                type="button"
+                                @click="if (skills.length < 5) { skills.push(''); searchSkills.push(''); openSkills.push(false); }"
+                                :disabled="skills.length >= 5"
+                                class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-gray-400"
+                            >
+                                Add Skill
+                            </button>
                             @error('skills')
                                 <p class="mt-1 text-xs text-red-500">
                                     {{ $message }}
@@ -174,8 +190,8 @@
                                 x-for="(company, index) in selectedCompanies"
                                 :key="index"
                             >
-                                <div class="mb-2">
-                                    <div class="relative">
+                                <div class="flex items-center mb-2">
+                                    <div class="relative flex-1">
                                         <input
                                             type="text"
                                             x-model="searchCompanies[index]"
@@ -212,7 +228,7 @@
                                         type="button"
                                         @click="selectedCompanies.splice(index, 1); searchCompanies.splice(index, 1); openCompanies.splice(index, 1)"
                                         x-show="selectedCompanies.length > 1"
-                                        class="mt-1 rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-700"
+                                        class="ml-2 rounded bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-700"
                                     >
                                         Remove
                                     </button>

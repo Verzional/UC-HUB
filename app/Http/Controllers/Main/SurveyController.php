@@ -30,7 +30,7 @@ class SurveyController extends Controller
         $request->validate([
             'primary_interest' => 'required|string',
             'cgpa' => 'required|numeric|min:0|max:4',
-            'skills' => 'required|array|size:5',
+            'skills' => 'required|array|min:1|max:5',
             'skills.*' => 'exists:skills,id',
             'companies' => 'array',
             'companies.*' => 'exists:companies,id',
