@@ -66,4 +66,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/recommend-jobs', [JobRecommendationController::class, 'recommendForUser'])->name('recommend.jobs');
 });
 
+Route::middleware('auth')->get('/ice/students', function () {
+    return view('main.ice.student-database');
+});
+
+Route::get('/ice/students/{id}', function () {
+    return view('main.ice.student-detail');
+});
+
 require __DIR__.'/auth.php';
