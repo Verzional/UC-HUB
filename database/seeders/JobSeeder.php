@@ -18,405 +18,115 @@ class JobSeeder extends Seeder
     public function run(): void
     {
         $jobs = [
-            // Company 1: TechCorp
+            // Arta Boga Pelangi
             [
-                'title' => 'Software Engineer',
-                'description' => 'Develop and maintain software applications.',
-                'location' => 'Silicon Valley, CA',
+                'title' => 'Management Trainee Sales',
+                'description' => 'Program percepatan karir untuk posisi managerial di bidang distribusi dan penjualan.',
+                'location' => 'Jakarta Barat',
                 'company_id' => 1,
                 'employment_type' => 'Full-time',
-                'salary' => '$80,000 - $120,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
+                'salary' => 'IDR 7,000,000 - 10,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:00:00', 'end_time' => '17:00:00',
             ],
+            // Avian Brands
             [
-                'title' => 'Data Analyst',
-                'description' => 'Analyze data to provide insights.',
-                'location' => 'Silicon Valley, CA',
-                'company_id' => 1,
-                'employment_type' => 'Full-time',
-                'salary' => '$60,000 - $90,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            [
-                'title' => 'DevOps Engineer',
-                'description' => 'Manage infrastructure and deployment.',
-                'location' => 'Silicon Valley, CA',
-                'company_id' => 1,
-                'employment_type' => 'Full-time',
-                'salary' => '$90,000 - $130,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            // Company 2: HealthPlus
-            [
-                'title' => 'Registered Nurse',
-                'description' => 'Provide patient care in a hospital setting.',
-                'location' => 'New York, NY',
+                'title' => 'R&D Chemist',
+                'description' => 'Melakukan riset dan pengembangan formula cat dekoratif terbaru.',
+                'location' => 'Surabaya',
                 'company_id' => 2,
                 'employment_type' => 'Full-time',
-                'salary' => '$70,000 - $100,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '07:00:00',
-                'end_time' => '19:00:00',
+                'salary' => 'IDR 6,000,000 - 9,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:00:00', 'end_time' => '16:00:00',
             ],
+            // Bank Permata
             [
-                'title' => 'Pharmacist',
-                'description' => 'Dispense medications and advise patients.',
-                'location' => 'New York, NY',
-                'company_id' => 2,
-                'employment_type' => 'Full-time',
-                'salary' => '$100,000 - $140,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            [
-                'title' => 'Physical Therapist',
-                'description' => 'Help patients recover from injuries.',
-                'location' => 'New York, NY',
-                'company_id' => 2,
-                'employment_type' => 'Part-time',
-                'salary' => '$50,000 - $80,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '16:00:00',
-            ],
-            // Company 3: FinanceHub
-            [
-                'title' => 'Financial Analyst',
-                'description' => 'Analyze financial data and trends.',
-                'location' => 'Chicago, IL',
+                'title' => 'Relationship Manager',
+                'description' => 'Mengelola portofolio nasabah prioritas dan menawarkan solusi finansial.',
+                'location' => 'Jakarta Pusat',
                 'company_id' => 3,
                 'employment_type' => 'Full-time',
-                'salary' => '$70,000 - $110,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
+                'salary' => 'IDR 8,000,000 - 12,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:30:00', 'end_time' => '17:30:00',
             ],
+            // Garuda Indonesia
             [
-                'title' => 'Investment Banker',
-                'description' => 'Manage investments and client portfolios.',
-                'location' => 'Chicago, IL',
-                'company_id' => 3,
-                'employment_type' => 'Full-time',
-                'salary' => '$100,000 - $150,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '18:00:00',
-            ],
-            [
-                'title' => 'Risk Manager',
-                'description' => 'Assess and mitigate financial risks.',
-                'location' => 'Chicago, IL',
-                'company_id' => 3,
+                'title' => 'Flight Attendant',
+                'description' => 'Memberikan pelayanan terbaik dan menjamin keselamatan penumpang selama penerbangan.',
+                'location' => 'Tangerang',
+                'company_id' => 4,
                 'employment_type' => 'Contract',
-                'salary' => '$80,000 - $120,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
+                'salary' => 'Competitive',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '00:00:00', 'end_time' => '23:59:59',
             ],
-            // Company 4: EduLearn
+            // HSBC Indonesia
             [
-                'title' => 'Teacher',
-                'description' => 'Educate students in various subjects.',
-                'location' => 'Boston, MA',
-                'company_id' => 4,
-                'employment_type' => 'Full-time',
-                'salary' => '$50,000 - $80,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '16:00:00',
-            ],
-            [
-                'title' => 'Curriculum Developer',
-                'description' => 'Design educational programs.',
-                'location' => 'Boston, MA',
-                'company_id' => 4,
-                'employment_type' => 'Full-time',
-                'salary' => '$60,000 - $90,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            [
-                'title' => 'Online Instructor',
-                'description' => 'Teach courses online.',
-                'location' => 'Boston, MA',
-                'company_id' => 4,
-                'employment_type' => 'Part-time',
-                'salary' => '$40,000 - $70,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '10:00:00',
-                'end_time' => '14:00:00',
-            ],
-            // Company 5: MarketMasters
-            [
-                'title' => 'Digital Marketer',
-                'description' => 'Manage online marketing campaigns.',
-                'location' => 'Los Angeles, CA',
+                'title' => 'Internal Auditor',
+                'description' => 'Melakukan audit internal untuk memastikan kepatuhan terhadap standar perbankan internasional.',
+                'location' => 'Jakarta Selatan',
                 'company_id' => 5,
                 'employment_type' => 'Full-time',
-                'salary' => '$55,000 - $85,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
+                'salary' => 'IDR 10,000,000 - 15,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '09:00:00', 'end_time' => '18:00:00',
             ],
+            // Papaya Fresh Gallery
             [
-                'title' => 'Content Creator',
-                'description' => 'Create engaging content for brands.',
-                'location' => 'Los Angeles, CA',
-                'company_id' => 5,
-                'employment_type' => 'Full-time',
-                'salary' => '$45,000 - $75,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            [
-                'title' => 'SEO Specialist',
-                'description' => 'Optimize websites for search engines.',
-                'location' => 'Los Angeles, CA',
-                'company_id' => 5,
-                'employment_type' => 'Contract',
-                'salary' => '$50,000 - $80,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            // Company 6: DesignStudio
-            [
-                'title' => 'Graphic Designer',
-                'description' => 'Create visual content for clients.',
-                'location' => 'Austin, TX',
+                'title' => 'Store Supervisor',
+                'description' => 'Mengawasi operasional harian supermarket dan pelayanan pelanggan.',
+                'location' => 'Surabaya',
                 'company_id' => 6,
                 'employment_type' => 'Full-time',
-                'salary' => '$50,000 - $80,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
+                'salary' => 'IDR 5,000,000 - 7,500,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '10:00:00', 'end_time' => '22:00:00',
             ],
+            // Polygon Bikes
             [
-                'title' => 'UX/UI Designer',
-                'description' => 'Design user interfaces and experiences.',
-                'location' => 'Austin, TX',
-                'company_id' => 6,
-                'employment_type' => 'Full-time',
-                'salary' => '$60,000 - $90,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            [
-                'title' => 'Art Director',
-                'description' => 'Lead creative projects.',
-                'location' => 'Austin, TX',
-                'company_id' => 6,
-                'employment_type' => 'Full-time',
-                'salary' => '$70,000 - $100,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            // Company 7: GreenEnergy
-            [
-                'title' => 'Energy Engineer',
-                'description' => 'Develop renewable energy solutions.',
-                'location' => 'Denver, CO',
+                'title' => 'Product Designer (Bike)',
+                'description' => 'Merancang desain frame dan geometri sepeda untuk performa tinggi.',
+                'location' => 'Sidoarjo',
                 'company_id' => 7,
                 'employment_type' => 'Full-time',
-                'salary' => '$75,000 - $110,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '16:00:00',
+                'salary' => 'IDR 7,000,000 - 11,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:00:00', 'end_time' => '17:00:00',
             ],
+            // SANF
             [
-                'title' => 'Sustainability Consultant',
-                'description' => 'Advise on environmental practices.',
-                'location' => 'Denver, CO',
-                'company_id' => 7,
-                'employment_type' => 'Contract',
-                'salary' => '$60,000 - $90,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
-            ],
-            [
-                'title' => 'Project Manager',
-                'description' => 'Oversee energy projects.',
-                'location' => 'Denver, CO',
-                'company_id' => 7,
-                'employment_type' => 'Full-time',
-                'salary' => '$80,000 - $120,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '16:00:00',
-            ],
-            // Company 8: RetailWorld
-            [
-                'title' => 'Store Manager',
-                'description' => 'Manage retail store operations.',
-                'location' => 'Miami, FL',
+                'title' => 'Credit Analyst',
+                'description' => 'Menganalisis kelayakan kredit nasabah korporasi untuk pembiayaan alat berat.',
+                'location' => 'Jakarta Pusat',
                 'company_id' => 8,
                 'employment_type' => 'Full-time',
-                'salary' => '$45,000 - $70,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '21:00:00',
+                'salary' => 'IDR 8,000,000 - 13,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:00:00', 'end_time' => '17:00:00',
             ],
+            // SPIL
             [
-                'title' => 'Sales Associate',
-                'description' => 'Assist customers in purchasing.',
-                'location' => 'Miami, FL',
-                'company_id' => 8,
-                'employment_type' => 'Part-time',
-                'salary' => '$25,000 - $40,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '10:00:00',
-                'end_time' => '18:00:00',
-            ],
-            [
-                'title' => 'Inventory Specialist',
-                'description' => 'Manage stock and inventory.',
-                'location' => 'Miami, FL',
-                'company_id' => 8,
-                'employment_type' => 'Full-time',
-                'salary' => '$35,000 - $55,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '16:00:00',
-            ],
-            // Company 9: LogiTrans
-            [
-                'title' => 'Logistics Coordinator',
-                'description' => 'Coordinate supply chain activities.',
-                'location' => 'Atlanta, GA',
+                'title' => 'Logistics Data Coordinator',
+                'description' => 'Mengkoordinasikan arus peti kemas dan memantau efisiensi rute pelayaran.',
+                'location' => 'Surabaya',
                 'company_id' => 9,
                 'employment_type' => 'Full-time',
-                'salary' => '$50,000 - $75,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '07:00:00',
-                'end_time' => '15:00:00',
+                'salary' => 'IDR 6,500,000 - 10,000,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:00:00', 'end_time' => '17:00:00',
             ],
+            // Viva Cosmetics
             [
-                'title' => 'Truck Driver',
-                'description' => 'Transport goods across regions.',
-                'location' => 'Atlanta, GA',
-                'company_id' => 9,
-                'employment_type' => 'Full-time',
-                'salary' => '$40,000 - $60,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '06:00:00',
-                'end_time' => '18:00:00',
-            ],
-            [
-                'title' => 'Warehouse Supervisor',
-                'description' => 'Supervise warehouse operations.',
-                'location' => 'Atlanta, GA',
-                'company_id' => 9,
-                'employment_type' => 'Full-time',
-                'salary' => '$45,000 - $65,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '08:00:00',
-                'end_time' => '16:00:00',
-            ],
-            // Company 10: FoodieDelight
-            [
-                'title' => 'Chef',
-                'description' => 'Prepare and cook meals.',
-                'location' => 'Seattle, WA',
+                'title' => 'Digital Marketing Specialist',
+                'description' => 'Mengelola kampanye iklan media sosial dan strategi konten digital.',
+                'location' => 'Surabaya',
                 'company_id' => 10,
                 'employment_type' => 'Full-time',
-                'salary' => '$40,000 - $60,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '10:00:00',
-                'end_time' => '22:00:00',
-            ],
-            [
-                'title' => 'Waiter',
-                'description' => 'Serve customers in the restaurant.',
-                'location' => 'Seattle, WA',
-                'company_id' => 10,
-                'employment_type' => 'Part-time',
-                'salary' => '$20,000 - $35,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '11:00:00',
-                'end_time' => '23:00:00',
-            ],
-            [
-                'title' => 'Catering Manager',
-                'description' => 'Manage catering events.',
-                'location' => 'Seattle, WA',
-                'company_id' => 10,
-                'employment_type' => 'Full-time',
-                'salary' => '$50,000 - $75,000',
-                'application_deadline' => Carbon::now()
-                    ->addDays(30)
-                    ->toDateString(),
-                'start_time' => '09:00:00',
-                'end_time' => '17:00:00',
+                'salary' => 'IDR 5,500,000 - 8,500,000',
+                'application_deadline' => Carbon::now()->addDays(30)->toDateString(),
+                'start_time' => '08:00:00', 'end_time' => '16:00:00',
             ],
         ];
 
