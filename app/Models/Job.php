@@ -2,49 +2,40 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
-    /** @use \Illuminate\Database\Eloquent\Factories\HasFactory<\Database\Factories\JobFactory> */
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    use HasFactory;
 
-    protected $table = 'employments';
+    protected $guarded = ['id'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'title',
-        'description',
-        'location',
-        'company_id',
-        'employment_type',
-        'salary',
-        'application_deadline',
-        'start_time',
-        'end_time',
+    // Ubah kolom JSON di database menjadi Array PHP otomatis
+    protected $casts = [
+        'category_ids' => 'array',
+        'responsibilities' => 'array',
+        'qualifications' => 'array',
+        'benefits' => 'array',
     ];
 
+    // RELASI KE COMPANY
     public function company()
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class, 'company_id');
     }
 
-    public function applications()
+    // RELASI KE FAVORITES (User)
+    public function favoritedBy()
     {
-        return $this->hasMany(Application::class);
+        return $this->belongsToMany(User::class, 'favorites', 'job_id', 'user_id')
+                    ->withPivot('is_favorite')
+                    ->withTimestamps();
     }
 
+    // --- TAMBAHAN BARU: RELASI SKILLS ---
     public function skills()
     {
-        return $this->belongsToMany(
-            Skill::class,
-            'employment_skill',
-            'employment_id',
-            'skill_id',
-        );
+        return $this->belongsToMany(Skill::class, 'job_skills', 'job_id', 'skill_id');
     }
 }

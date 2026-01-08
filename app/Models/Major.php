@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Major extends Model
 {
     protected $guarded = ['id'];
-    
-    public function jobs()
+
+    public function skills()
     {
-        return $this->hasMany(Job::class);
+        return $this->hasMany(Skill::class);
     }
 }

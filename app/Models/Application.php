@@ -2,34 +2,35 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
-    /** @use \Illuminate\Database\Eloquent\Factories\HasFactory<\Database\Factories\ApplicationFactory> */
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'user_id',
-        'job_id',
-        'cover_letter',
-        'resume_path',
-        'portfolio_path',
-        'status',
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'timeline' => 'array',
+        'applied_date' => 'datetime',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    // Relasi ke Job
     public function job()
     {
         return $this->belongsTo(Job::class);
+    }
+
+    // Relasi ke Company (PENTING: Tambahkan ini)
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    // Relasi ke User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

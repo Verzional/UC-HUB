@@ -6,34 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
-    /** @use \Illuminate\Database\Eloquent\Factories\HasFactory<\Database\Factories\SkillFactory> */
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    protected $guarded = ['id'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = ['name', 'industry'];
-
-    public function jobs()
+    public function major()
     {
-        return $this->belongsToMany(
-            Job::class,
-            'employment_skill',
-            'skill_id',
-            'employment_id',
-        );
+        return $this->belongsTo(Major::class);
     }
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'user_skill');
-    }
-
-    public function surveys()
-    {
-        return $this->belongsToMany(Survey::class,
-            'survey_skill');
-    }
+    public function userSkills()
+{
+    return $this->belongsToMany(Skill::class, 'skill_user');
 }
+}
+

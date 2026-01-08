@@ -72,4 +72,28 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ICE Routes Group 
 Route::get('/ice/dashboard', [ICEDashboardController::class, 'index'])
     ->name('main.ice.dashboard');
+
+// Jobs Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/my-account', [UserController::class, 'account'])->name('user.account');
+    Route::put('/my-account', [UserController::class, 'updateAccount'])->name('user.update'); // Untuk simpan
+    Route::get('/settings', [UserController::class, 'settings'])->name('user.settings');
+    Route::put('/my-account/password', [UserController::class, 'updatePassword'])->name('user.password');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+    Route::post('/settings/update', [UserController::class, 'updateSettings'])->name('settings.update');
+    Route::delete('/account/delete', [UserController::class, 'deleteAccount'])->name('account.delete');
+
+
+    Route::post('/jobs/{job}/apply', [JobController::class, 'apply'])->name('jobs.apply');
+});
+    Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+Route::post('/jobs/{job}/favorite', [JobController::class, 'toggleFavorite'])->name('jobs.favorite');
+Route::get('/saved-jobs', [JobController::class, 'savedJobs'])->name('jobs.saved');
+Route::delete('/jobs/{job}/favorite', [JobController::class, 'removeFavorite'])->name('jobs.unsave');
+
+
 require __DIR__.'/auth.php';

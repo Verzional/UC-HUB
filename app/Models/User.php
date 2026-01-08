@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Skill;
+use App\Models\Major;
 
 class User extends Authenticatable
 {
@@ -17,17 +22,33 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+        // Auth & Basic Info
         'name',
         'email',
         'password',
-        'student_id',
+        
+        // Profile Data
         'phone_number',
-        'cohort_year',
         'major',
-        'profile_photo_path',
-        'cv_path',
-        'portfolio_path',
-        'role',
+        'batch',            // Angkatan
+        'semester',
+        'date_of_birth',    // Tanggal Lahir
+        'photo_url',
+
+        'gpa',      // Add this
+        'interest', // Add this
+        'skills',   // Add this
+        'wishlist', // Add this
+        
+        // Documents
+        'saved_cv_name',
+        'saved_portfolio_name',
+        
+        // Settings (Preferences)
+        'notify_job_alerts',
+        'notify_app_status',
+        'notify_news',
+        'is_visible_to_recruiters',
     ];
 
     /**
@@ -41,30 +62,51 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'date_of_birth' => 'date', // Otomatis jadi Carbon Instance (bisa $user->date_of_birth->format('d M Y'))
+        
+        // Boolean Casting (Penting untuk Toggle Switch di Settings)
+        'notify_job_alerts' => 'boolean',
+        'notify_app_status' => 'boolean',
+        'notify_news' => 'boolean',
+        'is_visible_to_recruiters' => 'boolean',
+    ];
+
+    /**
+     * RELASI 1: User menyukai banyak Job (Favorites)
+     * Menggunakan tabel pivot 'favorites'
+     */
+    public function favorites(): BelongsToMany
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsToMany(Job::class, 'favorites', 'user_id', 'job_id')
+                    ->withTimestamps()
+                    ->withPivot('is_favorite'); 
     }
 
-    public function applications()
+    /**
+     * RELASI 2: User memiliki banyak Lamaran (Applications)
+     * Relasi One to Many ke tabel 'applications'
+     */
+    public function applications(): HasMany
     {
-        return $this->hasMany(Application::class);
+        return $this->hasMany(Application::class, 'user_id');
     }
 
-    public function skills()
-    {
-        return $this->belongsToMany(Skill::class, 'user_skill');
-    }
+   public function userSkills() // Ganti nama biar gak bentrok sama kolom 'skills'
+{
+    return $this->belongsToMany(Skill::class, 'skill_user');
+}
 
-    public function survey()
-    {
-        return $this->hasOne(Survey::class);
-    }
+public function major()
+{
+    // Ini menghubungkan major_id di tabel users ke id di tabel majors
+    return $this->belongsTo(Major::class, 'major_id');
+}
+
 }
