@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <form
                         method="POST"
-                        action="{{ route('admin.users.update', $user) }}"
+                        action="{{ route('users.update', $user) }}"
                         enctype="multipart/form-data"
                     >
                         @csrf
@@ -198,20 +198,20 @@
                             >
                                 <option value="">Select Role</option>
                                 <option
-                                    value="student"
-                                    {{ old('role', $user->role) == 'student' ? 'selected' : '' }}
+                                    value="Student"
+                                    {{ old('role', $user->role) == 'Student' ? 'selected' : '' }}
                                 >
                                     Student
                                 </option>
                                 <option
-                                    value="ice"
-                                    {{ old('role', $user->role) == 'ice' ? 'selected' : '' }}
+                                    value="ICE"
+                                    {{ old('role', $user->role) == 'ICE' ? 'selected' : '' }}
                                 >
                                     ICE
                                 </option>
                                 <option
-                                    value="admin"
-                                    {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}
+                                    value="Admin"
+                                    {{ old('role', $user->role) == 'Admin' ? 'selected' : '' }}
                                 >
                                     Admin
                                 </option>
@@ -319,7 +319,7 @@
 
                         <div class="flex items-center justify-end">
                             <a
-                                href="{{ route('admin.users.index') }}"
+                                href="{{ route('users.index') }}"
                                 class="mr-2 rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400"
                             >
                                 Cancel

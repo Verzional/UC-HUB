@@ -13,12 +13,6 @@
                         <h3 class="text-lg font-medium">{{ $job->title }}</h3>
                         <div>
                             <a
-                                href="{{ route('recommend.students', $job) }}"
-                                class="mr-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                            >
-                                Recommend Students
-                            </a>
-                            <a
                                 href="{{ route('jobs.edit', $job) }}"
                                 class="mr-2 rounded bg-yellow-500 px-4 py-2 font-bold text-white hover:bg-yellow-700"
                             >

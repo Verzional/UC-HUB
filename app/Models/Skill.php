@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Job;
 
 class Skill extends Model
 {
@@ -34,6 +35,6 @@ class Skill extends Model
     public function surveys()
     {
         return $this->belongsToMany(Survey::class,
-            'survey_skill');
+        'survey_skill');
     }
 }

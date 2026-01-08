@@ -38,10 +38,10 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10">
             </div>
 
-            <a href="{{ route('register') }}"
+            <a href="{{ route('login') }}"
                 class="bg-orange-500 text-white px-5 py-2 rounded-full text-sm font-semibold
                   shadow hover:bg-orange-600 transition">
-                Sign Up
+                Sign In
             </a>
         </div>
     </nav>
