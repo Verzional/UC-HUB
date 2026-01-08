@@ -22,6 +22,10 @@ Route::get('/dashboard', function () {
         return redirect()->route('admin.dashboard');
     }
 
+    if ($user->role === 'ICE') {
+        return redirect()->route('ice.dashboard');
+    }
+
     if ($user->role === 'Student' && !$user->survey) {
         return redirect()->route('surveys.create');
     }
@@ -29,9 +33,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Admin Dashboard
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified', 'role:Admin'])->name('admin.dashboard');
+Route::get('/ice/dashboard', function () {
+    return view('ice.dashboard');
+})->middleware(['auth', 'verified', 'role:ICE'])->name('ice.dashboard');
+
+// ICE Dashboard
+Route::get('/ice/dashboard', function () {
+    return view('ice.dashboard');
+})->middleware(['auth', 'verified', 'role:ICE'])->name('ice.dashboard');
 
 // Profile Management
 Route::middleware('auth')->group(function () {
