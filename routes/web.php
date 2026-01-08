@@ -19,7 +19,9 @@ Route::get('/', function () {
 
 // Dashboard
 Route::get('/dashboard', function () {
-    if (! auth()->user()->survey) {
+    $user = request()->user();
+
+    if (! $user->survey) {
         return redirect()->route('surveys.create');
     }
 

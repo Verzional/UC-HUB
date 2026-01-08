@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Skill;
 use App\Models\Survey;
 use App\Models\Wishlist;
@@ -46,7 +47,11 @@ class SurveyController extends Controller
         // Attach skills to survey
         $survey->skills()->attach($request->skills);
 
+
         // Attach skills to user
+        /** @var User $user */
+        $user = Auth::user();
+
         $user->skills()->syncWithoutDetaching($request->skills);
 
         // Create wishlists
