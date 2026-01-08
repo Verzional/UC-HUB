@@ -5,6 +5,7 @@ use App\Http\Controllers\Main\CompanyController;
 use App\Http\Controllers\Main\ICEDashboardController;
 use App\Http\Controllers\Main\JobController;
 use App\Http\Controllers\Main\SkillController;
+use App\Http\Controllers\Main\StudentController;
 use App\Http\Controllers\Main\SurveyController;
 use App\Http\Controllers\Main\UserController;
 use App\Http\Controllers\ProfileController;
@@ -76,6 +77,9 @@ Route::get('/students/jobs/{job}', [JobRecommendationController::class, 'show'])
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('ice.dashboard');
+    })->name('dashboard');
     Route::resource('users', UserController::class);
 });
 

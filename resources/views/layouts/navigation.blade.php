@@ -12,7 +12,23 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    @if (Auth::user()->role === 'ice')
+                    @if (Auth::user()->role === 'Admin')
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            Dashboard
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                            Users
+                        </x-nav-link>
+                    @elseif (Auth::user()->role === 'ice')
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            Dashboard
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
+                            Users
+                        </x-nav-link>
+                    @elseif (Auth::user()->role === 'ice')
                         <x-nav-link :href="route('ice.dashboard')" :active="request()->routeIs('dashboard')">
                             Dashboard
                         </x-nav-link>
@@ -25,7 +41,7 @@
                             Jobs
                         </x-nav-link>
 
-                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                        <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.*')">
                             Students
                         </x-nav-link>
 
@@ -113,7 +129,7 @@
             <x-responsive-nav-link :href="route('jobs.index')" :active="request()->routeIs('jobs.*')">
                 Jobs
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+            <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.*')">
                 Students
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('skills.index')" :active="request()->routeIs('skills.*')">
