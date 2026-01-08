@@ -29,8 +29,7 @@
                         @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
-                    {{-- Company --}}
-                    <div class="bg-white rounded-lg shadow p-4"
+                    {{-- <div class="bg-white rounded-lg shadow p-4"
                          x-data="{
                             companies: @json($companies),
                             selectedCompany: @json(old('company_id', $job->company_id)),
@@ -58,7 +57,7 @@
                         </div>
                         <input type="hidden" name="company_id" x-model="selectedCompany">
                         @error('company_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                    </div>
+                    </div> --}}
 
                     {{-- Employment Type --}}
                     <div class="bg-white rounded-lg shadow p-4">

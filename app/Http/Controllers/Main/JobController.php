@@ -57,7 +57,7 @@ class JobController extends Controller
         }
 
         return redirect()
-            ->route('jobs.index')
+            ->route('main.ice.dashboard')
             ->with('success', 'Job created successfully.');
     }
 
@@ -106,7 +106,7 @@ class JobController extends Controller
         $job->skills()->sync($request->skills ?? []);
 
         return redirect()
-            ->route('jobs.index')
+            ->route('main.ice.dashboard')
             ->with('success', 'Job updated successfully.');
     }
 
@@ -118,7 +118,7 @@ class JobController extends Controller
         $job->delete();
 
         return redirect()
-            ->route('jobs.index')
+            ->route('main.ice.dashboard')
             ->with('success', 'Job deleted successfully.');
     }
 }
