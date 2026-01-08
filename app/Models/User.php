@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Skill;
+use App\Models\Application;
+use App\Models\Survey;
 
 class User extends Authenticatable
 {
@@ -59,10 +64,11 @@ class User extends Authenticatable
         return $this->hasMany(Application::class);
     }
 
-    public function skills()
+    public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class, 'user_skill');
     }
+
 
     public function survey()
     {
